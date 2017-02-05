@@ -18,14 +18,14 @@ namespace hbehr.Extensions
         /// <param name="memberInfo">A property or Field</param>
         /// <param name="obj">Obj to get the value</param>
         /// <returns></returns>
-        public static T GetValue<T>(this MemberInfo memberInfo, object obj) where T : class
+        public static T GetValue<T>(this MemberInfo memberInfo, object obj)
         {
             switch (memberInfo.MemberType)
             {
                 case MemberTypes.Field:
-                    return ((FieldInfo)memberInfo).GetValue(obj) as T;
+                    return (T)((FieldInfo)memberInfo).GetValue(obj);
                 case MemberTypes.Property:
-                    return ((PropertyInfo)memberInfo).GetValue(obj) as T;
+                    return (T)((PropertyInfo)memberInfo).GetValue(obj);
                 default:
                     throw new NotImplementedException();
             }
@@ -76,7 +76,24 @@ namespace hbehr.Extensions
         /// <returns>True if property is present on class</returns>
         public static bool ObjectHasProperty(this Type type, string propertyName)
         {
-            return type.GetProperties().Where(p => p.Name.Equals(propertyName)).Any();
+            return type.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                .Any(p => p.Name.Equals(propertyName));
+        }
+
+        /// <summary>
+        /// Converts an object to a ExpandoObject, copying all Public Instance properties
+        /// </summary>
+        /// <param name="obj">Object to be converted</param>
+        /// <returns>An ExpandoObject containing all public instance properties of the original object</returns>
+        public static ExpandoObject AsExpando(this object obj)
+        {
+            if (obj is ExpandoObject expando) { return expando; }
+            expando = new ExpandoObject();
+            foreach (var prop in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                expando.AddProperty(prop.Name, prop.GetValue(obj));
+            }
+            return expando;
         }
 
         /// <summary>
@@ -91,25 +108,7 @@ namespace hbehr.Extensions
             ExpandoObject expando = obj.AsExpando();
             expando.AddProperty(propertyName, value);
             return expando;
-        }
-
-        /// <summary>
-        /// Converts an object to a ExpandoObject, copying all Public Instance properties
-        /// </summary>
-        /// <param name="obj">Object to be converted</param>
-        /// <returns>An ExpandoObject containing all public instance properties of the original object</returns>
-        public static ExpandoObject AsExpando(this object obj)
-        {
-            var expando = obj as ExpandoObject;
-            if (expando != null) { return expando; }
-            expando = new ExpandoObject();
-            
-            foreach (var prop in obj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance))
-            {
-                expando.AddProperty(prop.Name, prop.GetValue(obj));
-            }
-            return expando;
-        }
+        }     
 
         private static void AddProperty(this ExpandoObject expando, string propertyName, object propertyValue)
         {
