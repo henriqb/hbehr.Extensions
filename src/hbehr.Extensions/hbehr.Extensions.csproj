@@ -51,4 +51,15 @@
     <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetPath)" "$(SolutionDir)\..\binary\$(TargetFrameworkVersion.Replace("v", "net").Replace(".", ""))"
+copy /Y "$(TargetDir)$(ProjectName).pdb" "$(SolutionDir)\..\binary\$(TargetFrameworkVersion.Replace("v", "net").Replace(".", ""))"</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="AfterBuild">
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v4.6.2'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.6.1" RunEachTargetSeparately="true" />
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v4.6.1'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.6" RunEachTargetSeparately="true" />
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v4.6'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.5.2" RunEachTargetSeparately="true" />
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v4.5.2'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.5.1" RunEachTargetSeparately="true" />
+    <MSBuild Condition=" '$(TargetFrameworkVersion)' == 'v4.5.1'" Projects="$(MSBuildProjectFile)" Properties="TargetFrameworkVersion=v4.5" RunEachTargetSeparately="true" />
+  </Target>
 </Project>
