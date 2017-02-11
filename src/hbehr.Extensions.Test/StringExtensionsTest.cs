@@ -114,5 +114,15 @@ namespace hbehr.Extensions.Test
             firstCharToUpper = str.FirstCharToUpper();
             Assert.AreEqual("123test", firstCharToUpper);
         }
+
+        [Test]
+        public void TestRemoveZeroWidthNoBreakSpace()
+        {
+            string normalString = "1234abcd";
+            string stringWithZwNb = "1234" + Constants.ZeroWidthNoBreakSpace.ToString() + "abcd";
+            Assert.AreNotEqual(normalString, stringWithZwNb);
+            string cleanedString = stringWithZwNb.RemoveZeroWidthNoBreakSpace();
+            Assert.AreEqual(normalString, cleanedString);
+        }
     }
 }

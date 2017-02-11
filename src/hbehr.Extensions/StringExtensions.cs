@@ -164,5 +164,15 @@ namespace hbehr.Extensions
         {
             return str?.Any() == true ? str.First().ToString().ToUpper() + str.SafeSubstring(1) : string.Empty;
         }
+
+        /// <summary>
+        /// Removes character Zero Width No-Break Space '' (65279) from a string
+        /// </summary>
+        /// <param name="str">String to be cleaned</param>
+        /// <returns>The string without '' (65279) character</returns>
+        public static string RemoveZeroWidthNoBreakSpace(this string str)
+        {
+            return str?.Replace(Constants.ZeroWidthNoBreakSpace.ToString(), string.Empty);
+        }
     }
 }
