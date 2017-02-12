@@ -174,5 +174,33 @@ namespace hbehr.Extensions
         {
             return str?.Replace(Constants.ZeroWidthNoBreakSpace.ToString(), string.Empty);
         }
+
+        /// <summary>
+        /// Remove all HTML tags and replace &nbsp; for ' '
+        /// </summary>
+        /// <param name="str">HTML string</param>
+        /// <returns>Pure text</returns>
+        public static string StripHTML(this string str)
+        {
+            StringBuilder sb = new StringBuilder();            
+            bool htmlTag = false;
+            str = str.Replace("&nbps;", " ");
+            foreach (char c in str)
+            {
+                if ('<'.Equals(c))
+                {
+                    htmlTag = true;
+                    continue;
+                }
+                if ('>'.Equals(c))
+                {
+                    htmlTag = false;
+                    continue;
+                }
+                if (htmlTag) { continue; }
+                sb.Append(c);
+            }
+            return sb.ToString().Trim();
+        }
     }
 }

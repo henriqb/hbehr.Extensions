@@ -124,5 +124,28 @@ namespace hbehr.Extensions.Test
             string cleanedString = stringWithZwNb.RemoveZeroWidthNoBreakSpace();
             Assert.AreEqual(normalString, cleanedString);
         }
+
+        [Test]
+        public void TestStripHTML()
+        {
+            string testWithoutHtml = "teste without html";
+            Assert.AreEqual(testWithoutHtml, testWithoutHtml.StripHTML());
+
+            string testHtml = @"<P style=""MARGIN: 0cm 0cm 10pt"" class=MsoNormal><SPAN style=""LINE-HEIGHT: 115%;" +
+                @"FONT-FAMILY: 'Verdana','sans-serif'; COLOR: #333333; FONT-SIZE: 9pt"">In an " +
+                "email sent just three days before the Deepwater Horizon exploded, the onshore " +
+                @"<SPAN style=""mso-bidi-font-weight: bold""><b>BP</b></SPAN> manager in charge of " +
+                "the drilling rig warned his supervisor that last-minute procedural changes were " +
+                @"creating ""chaos"". April emails were given to government investigators by <SPAN " +
+                @"style=""mso-bidi-font-weight: bold""><b>BP</b></SPAN> and reviewed by The Wall " + 
+                "Street Journal and are the most direct evidence yet that workers on the rig " +
+                "were unhappy with the numerous changes, and had voiced their concerns to <SPAN " +
+                @"style=""mso-bidi-font-weight: bold""><b>BP</b></SPAN>’s operations managers in Houston.";
+            Assert.AreEqual("In an email sent just three days before the Deepwater Horizon exploded, the onshore BP manager in charge " +
+                "of the drilling rig warned his supervisor that last-minute procedural changes were creating \"chaos\". April emails " + 
+                "were given to government investigators by BP and reviewed by The Wall Street Journal and are the most direct evidence " +
+                "yet that workers on the rig were unhappy with the numerous changes, and had voiced their concerns to BP’s operations " +
+                "managers in Houston.", testHtml.StripHTML());
+        }
     }
 }
