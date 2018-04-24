@@ -1,6 +1,6 @@
 ﻿/* The MIT License (MIT)
 
-Copyright (c) 2014 - 2017 Henrique Borba Behr
+Copyright (c) 2014 - 2018 Henrique Borba Behr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -201,6 +201,25 @@ namespace hbehr.Extensions
                 sb.Append(c);
             }
             return sb.ToString().Trim();
+        }
+
+        /// <summary>
+        /// Converts a camelCaseExpression to dash-expression 
+        /// </summary>
+        /// <param name="str">String to be converted</param>
+        /// <returns></returns>
+        public static string CamelCaseToDash(this string str)
+        {
+            if (string.IsNullOrWhiteSpace(str)) { return str; }
+            StringBuilder builder = new StringBuilder();
+            builder.Append(char.ToLower(str[0]));
+            for (var i = 1; i < str.Length; i++)
+            {
+                char c = str[i];
+                if (char.IsUpper(c)) { builder.Append('-'); }
+                builder.Append(char.ToLower(c));
+            }
+            return builder.ToString();
         }
     }
 }

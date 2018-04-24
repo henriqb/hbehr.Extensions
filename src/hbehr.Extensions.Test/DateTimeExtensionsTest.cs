@@ -1,6 +1,6 @@
 ﻿/* The MIT License (MIT)
 
-Copyright (c) 2014 - 2017 Henrique Borba Behr
+Copyright (c) 2014 - 2018 Henrique Borba Behr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,10 +30,10 @@ namespace hbehr.Extensions.Test
         [Test]
         public void TestToDateTimeStringPtBr()
         {
-            var date = new DateTime(2017, 01, 15, 18, 15, 00);
+            var date = new DateTime(2018, 01, 15, 18, 15, 00);
 
             string dateStr = date.ToDateTimeStringPtBr();
-            Assert.AreEqual("15/01/2017 18:15", dateStr);
+            Assert.AreEqual("15/01/2018 18:15", dateStr);
 
             dateStr = ((DateTime?)null).ToDateTimeStringPtBr();
             Assert.IsNull(dateStr);
@@ -42,10 +42,10 @@ namespace hbehr.Extensions.Test
         [Test]
         public void TestToDateStringPtBr()
         {
-            var date = new DateTime(2017, 01, 15, 18, 15, 00);
+            var date = new DateTime(2018, 01, 15, 18, 15, 00);
 
             string dateStr = date.ToDateStringPtBr();
-            Assert.AreEqual("15/01/2017", dateStr);
+            Assert.AreEqual("15/01/2018", dateStr);
 
             dateStr = ((DateTime?)null).ToDateStringPtBr();
             Assert.IsNull(dateStr);
@@ -54,8 +54,8 @@ namespace hbehr.Extensions.Test
         [Test]
         public void TestMax()
         {
-            DateTime? date = new DateTime(2017, 01, 15, 18, 15, 00);
-            DateTime? date2 = new DateTime(2017, 05, 20, 15, 30, 00);
+            DateTime? date = new DateTime(2018, 01, 15, 18, 15, 00);
+            DateTime? date2 = new DateTime(2018, 05, 20, 15, 30, 00);
 
             var minDate = date.Max(date2);
             Assert.AreEqual(date2, minDate);
@@ -72,8 +72,8 @@ namespace hbehr.Extensions.Test
         [Test]
         public void TestMin()
         {
-            DateTime? date = new DateTime(2017, 01, 15, 18, 15, 00);
-            DateTime? date2 = new DateTime(2017, 05, 20, 15, 30, 00);
+            DateTime? date = new DateTime(2018, 01, 15, 18, 15, 00);
+            DateTime? date2 = new DateTime(2018, 05, 20, 15, 30, 00);
 
             var minDate = date.Min(date2);
             Assert.AreEqual(date.Value, minDate);

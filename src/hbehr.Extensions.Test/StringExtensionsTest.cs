@@ -1,6 +1,6 @@
 ﻿/* The MIT License (MIT)
 
-Copyright (c) 2014 - 2017 Henrique Borba Behr
+Copyright (c) 2014 - 2018 Henrique Borba Behr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -146,6 +146,16 @@ namespace hbehr.Extensions.Test
                 "were given to government investigators by BP and reviewed by The Wall Street Journal and are the most direct evidence " +
                 "yet that workers on the rig were unhappy with the numerous changes, and had voiced their concerns to BP’s operations " +
                 "managers in Houston.", testHtml.StripHTML());
+        }
+
+        [Test]
+        public void TestCamelCaseToDash()
+        {
+            string camelCase = "CamelCaseStringAAb";
+            Assert.AreEqual("camel-case-string-a-ab", camelCase.CamelCaseToDash());
+
+            string dashedString = "already-dashed-string";
+            Assert.AreEqual(dashedString, dashedString.CamelCaseToDash());
         }
     }
 }

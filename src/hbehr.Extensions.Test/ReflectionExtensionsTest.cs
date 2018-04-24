@@ -1,6 +1,6 @@
 ﻿/* The MIT License (MIT)
 
-Copyright (c) 2014 - 2017 Henrique Borba Behr
+Copyright (c) 2014 - 2018 Henrique Borba Behr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -127,6 +127,20 @@ namespace hbehr.Extensions.Test
             Assert.AreEqual(10, newObj.Property4.Property1);
             Assert.AreEqual(1, newObj.Property1);
             Assert.AreEqual('3', newObj.Property3);
+        }
+
+        [Test]
+        public void TestIsSubclassOfRawGeneric()
+        {
+            Assert.IsTrue(typeof(Implementation).IsSubclassOfRawGeneric(typeof(BaseClass<>)));
+            Assert.IsFalse(typeof(TestClass).IsSubclassOfRawGeneric(typeof(BaseClass<>)));
+        }
+
+        class Implementation : BaseClass<TestClass> { }
+
+        class BaseClass<T>
+        {
+            int Test1 { get; set; }
         }
 
         class TestClass

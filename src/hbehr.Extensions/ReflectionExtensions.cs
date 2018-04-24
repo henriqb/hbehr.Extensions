@@ -1,6 +1,6 @@
 ﻿/* The MIT License (MIT)
 
-Copyright (c) 2014 - 2017 Henrique Borba Behr
+Copyright (c) 2014 - 2018 Henrique Borba Behr
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -131,6 +131,12 @@ namespace hbehr.Extensions
             return expando;
         }     
 
+        /// <summary>
+        /// Adds a property to a Expando Object, or updates it if it already exists
+        /// </summary>
+        /// <param name="expando"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="propertyValue"></param>
         private static void AddProperty(this ExpandoObject expando, string propertyName, object propertyValue)
         {
             var expandoDict = expando as IDictionary<string, object>;
@@ -140,6 +146,19 @@ namespace hbehr.Extensions
                 return;
             }
             expandoDict.Add(propertyName, propertyValue);
+        }
+
+        /// <summary>
+        /// Checks if a class is a SubClass of RawGeneric class, Ex: Implementation&lt;Model&gt; .IsSubClassOfRawGeneric( BaseClass&lt;T&gt; ) == true
+        /// </summary>
+        /// <param name="toCheck">The Type of Class you want to check</param>
+        /// <param name="generic">Generic parameter</param>
+        /// <returns>True or False</returns>
+        public static bool IsSubclassOfRawGeneric(this Type toCheck, Type generic)
+        {
+            if (toCheck == null || generic == null || toCheck == typeof(object)) return false;
+            var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+            return generic == cur ? true : toCheck.BaseType.IsSubclassOfRawGeneric(generic);
         }
     }
 }
