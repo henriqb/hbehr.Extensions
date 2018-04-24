@@ -10,7 +10,7 @@
     <Copyright>Henrique B. Behr</Copyright>
     <PackageLicenseUrl>https://github.com/henriqb/hbehr.Extensions/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/henriqb/hbehr.Extensions</PackageProjectUrl>
-    <PackageIconUrl>https://github.com/henriqb/hbehr.Extensions/blob/master/icon.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/henriqb/hbehr.Extensions/master/icon.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/henriqb/hbehr.Extensions</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>hbehr c-sharp extensions helpers</PackageTags>
