@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26127.3
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hbehr.Extensions", "hbehr.Extensions\hbehr.Extensions.csproj", "{59E30402-95F2-45B8-B391-7885B3FA44D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hbehr.Extensions", "hbehr.Extensions\hbehr.Extensions.csproj", "{07F9EB0C-8993-4E98-BAB9-D36C2450EEA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hbehr.Extensions.Test", "hbehr.Extensions.Test\hbehr.Extensions.Test.csproj", "{24AAD3A6-0015-4523-9BD9-FF1076BCFA05}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hbehr.Extensions.TestNetFramework", "hbehr.Extensions.TestNetFramework\hbehr.Extensions.TestNetFramework.csproj", "{E3208651-AEDE-472C-B186-0200901D296A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hbehr.Extensions.TestNetCore", "hbehr.Extensions.TestNetCore\hbehr.Extensions.TestNetCore.csproj", "{AF97255B-F2D2-4CDF-A5A0-7FE6E268F6E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +15,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{59E30402-95F2-45B8-B391-7885B3FA44D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{59E30402-95F2-45B8-B391-7885B3FA44D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{59E30402-95F2-45B8-B391-7885B3FA44D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{59E30402-95F2-45B8-B391-7885B3FA44D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{24AAD3A6-0015-4523-9BD9-FF1076BCFA05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{24AAD3A6-0015-4523-9BD9-FF1076BCFA05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{24AAD3A6-0015-4523-9BD9-FF1076BCFA05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{24AAD3A6-0015-4523-9BD9-FF1076BCFA05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07F9EB0C-8993-4E98-BAB9-D36C2450EEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07F9EB0C-8993-4E98-BAB9-D36C2450EEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07F9EB0C-8993-4E98-BAB9-D36C2450EEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07F9EB0C-8993-4E98-BAB9-D36C2450EEA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3208651-AEDE-472C-B186-0200901D296A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3208651-AEDE-472C-B186-0200901D296A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3208651-AEDE-472C-B186-0200901D296A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3208651-AEDE-472C-B186-0200901D296A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF97255B-F2D2-4CDF-A5A0-7FE6E268F6E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF97255B-F2D2-4CDF-A5A0-7FE6E268F6E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF97255B-F2D2-4CDF-A5A0-7FE6E268F6E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF97255B-F2D2-4CDF-A5A0-7FE6E268F6E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FB918071-D282-406F-A776-DD273EDAF303}
 	EndGlobalSection
 EndGlobal

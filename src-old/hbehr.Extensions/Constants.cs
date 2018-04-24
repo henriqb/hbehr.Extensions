@@ -19,22 +19,11 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
-using Microsoft.AspNetCore.Http;
 
 namespace hbehr.Extensions
 {
-    public static class HttpExtensions
+    public struct Constants
     {
-        /// <summary>
-        /// Determines whether the specified HTTP request is an AJAX request.
-        /// </summary>
-        /// <param name="request">The HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="request"/> parameter is null.</exception>
-        /// <returns>
-        /// true if the specified HTTP request is an AJAX request; otherwise, false.
-        /// </returns>
-        public static bool IsAjaxRequest(this HttpRequest request)
-        {
-            return "XMLHttpRequest".Equals(request?.Headers?["X-Requested-With"]);
-        }
+        public const char ZeroWidthNoBreakSpace = ((char)65279);
     }
 }

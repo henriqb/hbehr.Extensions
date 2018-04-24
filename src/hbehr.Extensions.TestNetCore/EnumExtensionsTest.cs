@@ -19,22 +19,38 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
-using Microsoft.AspNetCore.Http;
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace hbehr.Extensions
+namespace hbehr.Extensions.TestNetFramework
 {
-    public static class HttpExtensions
+    [TestFixture]
+    public class EnumExtensionsTest
     {
-        /// <summary>
-        /// Determines whether the specified HTTP request is an AJAX request.
-        /// </summary>
-        /// <param name="request">The HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="request"/> parameter is null.</exception>
-        /// <returns>
-        /// true if the specified HTTP request is an AJAX request; otherwise, false.
-        /// </returns>
-        public static bool IsAjaxRequest(this HttpRequest request)
+        enum TestEnum
         {
-            return "XMLHttpRequest".Equals(request?.Headers?["X-Requested-With"]);
+            Field1 = 1,
+            Field2 = 2,
+            Field3 = 3
+        }
+
+        [Test]
+        public void TestList()
+        {
+            var list = EnumExtensions.List<TestEnum>();
+            Assert.IsNotNull(list);
+            Assert.IsTrue(list.Any(x => x == TestEnum.Field1));
+            Assert.AreEqual(3, list.Count());
+        }
+
+        [Test]
+        public void TestListDynamic()
+        {
+            var list = TestEnum.Field1.GetType().List() as IEnumerable<dynamic>;
+            Assert.IsNotNull(list);
+            Assert.IsTrue(list.Any(x => x == TestEnum.Field1));
+            Assert.AreEqual(3, list.Count());
         }
     }
 }

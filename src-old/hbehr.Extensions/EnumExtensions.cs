@@ -19,22 +19,35 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
-using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace hbehr.Extensions
 {
-    public static class HttpExtensions
+    /// <summary>
+    /// Extensions and Helpers for Enum
+    /// </summary>
+    public static class EnumExtensions
     {
         /// <summary>
-        /// Determines whether the specified HTTP request is an AJAX request.
+        /// List all Enum Values
         /// </summary>
-        /// <param name="request">The HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="request"/> parameter is null.</exception>
-        /// <returns>
-        /// true if the specified HTTP request is an AJAX request; otherwise, false.
-        /// </returns>
-        public static bool IsAjaxRequest(this HttpRequest request)
+        /// <typeparam name="T">A Enum Type</typeparam>
+        /// <returns>An IEnumerable that contains all of the Enum T values</returns>
+        public static IEnumerable<T> List<T>()
         {
-            return "XMLHttpRequest".Equals(request?.Headers?["X-Requested-With"]);
+            return Enum.GetValues(typeof(T)).Cast<T>();
+        }
+
+        /// <summary>
+        /// List all Enum Values
+        /// </summary>
+        /// <typeparam name="T">A Enum Type</typeparam>
+        /// <returns>An IEnumerable that contains all of the Enum T values</returns>
+        public static IEnumerable<dynamic> List(this Type t)
+        {
+            return Enum.GetValues(t).Cast<dynamic>();
         }
     }
 }

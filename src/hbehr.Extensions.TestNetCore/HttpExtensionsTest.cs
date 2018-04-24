@@ -19,22 +19,24 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE. */
-using Microsoft.AspNetCore.Http;
+using NUnit.Framework;
 
-namespace hbehr.Extensions
+namespace hbehr.Extensions.TestNetFramework
 {
-    public static class HttpExtensions
+    [TestFixture]
+    public class HttpExtensionsTest
     {
-        /// <summary>
-        /// Determines whether the specified HTTP request is an AJAX request.
-        /// </summary>
-        /// <param name="request">The HTTP request.</param><exception cref="T:System.ArgumentNullException">The <paramref name="request"/> parameter is null.</exception>
-        /// <returns>
-        /// true if the specified HTTP request is an AJAX request; otherwise, false.
-        /// </returns>
-        public static bool IsAjaxRequest(this HttpRequest request)
+        [Test]
+        public void TestIsAjaxRequest()
         {
-            return "XMLHttpRequest".Equals(request?.Headers?["X-Requested-With"]);
+            // var request = new HttpRequest("filename", "https://www.teste.com.br", "lele=lala&lili=lulu");
+            // Assert.IsFalse(request.IsAjaxRequest());
+
+            //request.Headers.Add("X-Requested-With", "XMLHttpRequest"); <- throws exception :(, can't mock Sealed class..
+            //Assert.IsTrue(request.IsAjaxRequest());
+
+            // request = null;
+            // Assert.IsFalse(request.IsAjaxRequest());
         }
     }
 }
